@@ -1,0 +1,44 @@
+exam:
+  duration_minutes: 60   # Total exam duration in minutes
+
+camera:
+  index: 0               # Default webcam index
+  width: 640             # Capture width
+  height: 480            # Capture height
+  fps: 10                # Frames per second for monitoring
+
+features:
+  face_recognition: true   # Verify candidate identity
+  gaze_tracking: true      # Detect gaze/blinks
+  head_pose: true          # Detect suspicious head movements
+  object_detection: true   # Detect forbidden items (desk + exam)
+  audio_monitoring: true   # Detect suspicious audio/speech
+  tab_switch: false        # Detect tab switching (browser monitoring)
+
+thresholds:
+  # Face recognition
+  face_similarity_threshold: 0.6   # Higher = stricter identity check
+  # Blink detection
+  blink_threshold: 0.22
+  # Head pose
+  head_yaw_threshold_deg: 25       # Degrees left/right before considered "look away"
+  head_pitch_threshold_deg: 25     # Degrees up/down before considered suspicious
+  # Object detection
+  object_confidence: 0.35          # YOLO confidence threshold
+  # Audio monitoring
+  audio_energy_threshold: 0.02     # Energy level above which speech is detected
+
+pre_exam:
+  enrollment_frames: 50            # Frames to capture during enrollment
+  desk_snapshot: "storage_files/desk_ref.jpg"
+  forbidden_items: ["cell phone", "book", "laptop"]   # Classes to flag on desk
+
+paths:
+  evidence_dir: "storage_files/evidence"
+  db_path: "storage_files/session.db"
+  private_key: "storage_files/private_key.pem"
+  public_key: "storage_files/public_key.pem"
+  output_report: "storage_files/report.pdf"
+  lstm_model: "C:/Users/nithish/Downloads/SmartProctor/data/final_front/looking_away_lstm_optimized.keras"
+  lstm_scaler: "C:/Users/nithish/Downloads/SmartProctor/data/final_front/scaler.pkl"
+
